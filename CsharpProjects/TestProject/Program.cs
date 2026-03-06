@@ -1,60 +1,32 @@
-﻿// SKU = Stock Keeping Unit. 
-// SKU value format: <product #>-<2-letter color code>-<size code>
-using System.Collections;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks.Dataflow;
+﻿/*You must use either the do-while statement or the while statement as an outer game loop.
+The hero and the monster start with 10 health points.
+All attacks are a value between 1 and 10.
+The hero attacks first.
+Print the amount of health the monster lost and their remaining health.
+If the monster's health is greater than 0, it can attack the hero.
+Print the amount of health the hero lost and their remaining health.
+Continue this sequence of attacking until either the monster's health or hero's health is zero or less.
+Print the winner.*/
+using Microsoft.VisualBasic;
 
-string sku = "01-MN-L";
+Random random = new Random();
+int heroHealth = 10;
+int monsterHealth = 10;
 
-string[] product = sku.Split('-');
-
-string type = "";
-string color = "";
-string size = "";
-
-switch (product[0])
+do
 {
-case "01":
-    type = "Sweat Shirt";
-    break;
-case "02":
-    type = "T-Shirt";
-    break;
-case "03":
-    type = "Sweat Pants";
-    break;
-default:
-    type = "Other";
-    break;
-}
+    int monsterDamageDealt = random.Next(1, 11); 
+    int heroDamageDealt = random.Next(1, 11);
 
-switch (product[1])
-{
-    case "BL":
-        color = "Black";
-        break;
-    case "MN":
-        color = "Maroon";
-        break;
-    default:
-        color = "White";
-        break;
-}
+    monsterHealth -= heroDamageDealt;
+    Console.WriteLine($"Hero deals {heroDamageDealt} and Monster's Health is now {monsterHealth}. She returns with {monsterDamageDealt} damage points.");
 
-switch (product[2])
-{
-    case "S":
-        size = "Small";
-        break;
-    case "M":
-        size = "Medium";
-        break;
-    case "L":
-        size = "Large";
-        break;
-    default:
-        size = "One size fits all";
-        break;
-}
+    heroHealth -= monsterDamageDealt;
+    Console.WriteLine($"Hero's Health is now {heroHealth} points.");
+    
+    if (monsterHealth <= 0) continue;
 
-Console.WriteLine($"Product: {size} {color} {type}");
+
+} while ((heroHealth > 0) && (monsterHealth > 0));
+
+ Console.WriteLine(heroHealth > monsterHealth ? "Hero wins!" : "Monster wins!");
