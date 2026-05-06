@@ -1,49 +1,62 @@
-﻿/*int invoiceNumber = 1201;
-decimal productShares = 25.4568m;
-decimal subtotal = 2750.00m;
-decimal taxPercentage = .15825m;
-decimal total = 3185.19m;
+﻿/*string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
 
-Console.WriteLine($"Invoice Number: {invoiceNumber}");
-Console.WriteLine($"   Shares: {productShares:N3} Product");
-Console.WriteLine($"     Sub Total: {subtotal:C}");
-Console.WriteLine($"           Tax: {taxPercentage:P2}");
-Console.WriteLine($"     Total Billed: {total:C}");
+// The IndexOfAny() helper method requires a char array of characters. 
+// You want to look for:
 
-string paymentId = "769C";
- string payeeName = "Mr. Stephen Ortega";
- string paymentAmount = "$5,000.00";
+char[] openSymbols = { '[', '{', '(' };
 
- var formattedLine = paymentId.PadRight(6);
- formattedLine += payeeName.PadRight(24);
- formattedLine += paymentAmount.PadLeft(10);
+// You'll use a slightly different technique for iterating through 
+// the characters in the string. This time, use the closing 
+// position of the previous iteration as the starting index for the 
+//next open symbol. So, you need to initialize the closingPosition 
+// variable to zero:
 
- Console.WriteLine("1234567890123456789012345678901234567890");
- Console.WriteLine(formattedLine); */
+int closingPosition = 0;
 
- string customerName = "Ms. Barros";
+while (true)
+{
+    int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
 
-string currentProduct = "Magic Yield";
-int currentShares = 2975000;
-decimal currentReturn = 0.1275m;
-decimal currentProfit = 55000000.0m;
+    if (openingPosition == -1) break;
 
-string newProduct = "Glorious Future";
-decimal newReturn = 0.13125m;
-decimal newProfit = 63000000.0m;
+    string currentSymbol = message.Substring(openingPosition, 1);
 
-Console.WriteLine($"Dear {customerName}, \nAs a customer of our {currentProduct} offering we are excited to tell you about a new financial product that would dramatically increase your return. \n\nCurrently, you own {currentShares:N2} shares at a return of {currentReturn:P2}. \n\nOur new product, {newProduct} offers a return of {newReturn:P2}.  Given your current volume, your potential profit would be {newProfit:C}.\n");
+    // Now  find the matching closing symbol
+    char matchingSymbol = ' ';
+
+    switch (currentSymbol)
+    {
+        case "[":
+            matchingSymbol = ']';
+            break;
+        case "{":
+            matchingSymbol = '}';
+            break;
+        case "(":
+            matchingSymbol = ')';
+            break;
+    }
+
+    // To find the closingPosition, use an overload of the IndexOf method to specify 
+    // that the search for the matchingSymbol should start at the openingPosition in the string. 
+
+    openingPosition += 1;
+    closingPosition = message.IndexOf(matchingSymbol, openingPosition);
+
+    int length = closingPosition - openingPosition;
+    Console.WriteLine(message.Substring(openingPosition, length));
+} */
+
+const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+
+string quantity = "";
+string output = "";
 
 
-Console.WriteLine("Here's a quick comparison:\n");
+int openingPosition = input.IndexOf("<span>");
+int closingPosition = input.IndexOf("</span>");
 
-// var formattedLine = currentProduct.PadRight(10);
-// string comparisonMessage = "";
-// Console.WriteLine(comparisonMessage);
-// Console.WriteLine($"{currentProduct}{currentReturn:P2}{currentProfit:C}");
-// Console.WriteLine($"{newProduct}{newReturn:P2}{newProfit:C}");
- var comparisonMessage = currentProduct.PadRight(20);
- comparisonMessage += String.Format("{0:P}", currentReturn).PadRight(10);
- comparisonMessage += String.Format("{0:C}", currentProfit).PadRight(10);
+openingPosition += 6;
 
- Console.WriteLine(comparisonMessage);
+Console.WriteLine(quantity);
+Console.WriteLine(output);
