@@ -1,62 +1,23 @@
-﻿/*string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
-
-// The IndexOfAny() helper method requires a char array of characters. 
-// You want to look for:
-
-char[] openSymbols = { '[', '{', '(' };
-
-// You'll use a slightly different technique for iterating through 
-// the characters in the string. This time, use the closing 
-// position of the previous iteration as the starting index for the 
-//next open symbol. So, you need to initialize the closingPosition 
-// variable to zero:
-
-int closingPosition = 0;
-
-while (true)
+﻿string[,] corporate = 
 {
-    int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
+    {"Robert", "Bavin"}, {"Simon", "Bright"},
+    {"Kim", "Sinclair"}, {"Aashrita", "Kamath"},
+    {"Sarah", "Delucchi"}, {"Sinan", "Ali"}
+};
 
-    if (openingPosition == -1) break;
+string[,] external = 
+{
+    {"Vinnie", "Ashton"}, {"Cody", "Dysart"},
+    {"Shay", "Lawrence"}, {"Daren", "Valdes"}
+};
 
-    string currentSymbol = message.Substring(openingPosition, 1);
+string externalDomain = "hayworth.com";
 
-    // Now  find the matching closing symbol
-    char matchingSymbol = ' ';
-
-    switch (currentSymbol)
-    {
-        case "[":
-            matchingSymbol = ']';
-            break;
-        case "{":
-            matchingSymbol = '}';
-            break;
-        case "(":
-            matchingSymbol = ')';
-            break;
-    }
-
-    // To find the closingPosition, use an overload of the IndexOf method to specify 
-    // that the search for the matchingSymbol should start at the openingPosition in the string. 
-
-    openingPosition += 1;
-    closingPosition = message.IndexOf(matchingSymbol, openingPosition);
-
-    int length = closingPosition - openingPosition;
-    Console.WriteLine(message.Substring(openingPosition, length));
-} */
-
-const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
-
-string quantity = "";
-string output = "";
+for (int i = 0; i < corporate.GetLength(0); i++) 
+{
+        Console.WriteLine($"Employee Email: {corporate}"+$"{internalDomain}");}
 
 
-int openingPosition = input.IndexOf("<span>");
-int closingPosition = input.IndexOf("</span>");
-
-openingPosition += 6;
-
-Console.WriteLine(quantity);
-Console.WriteLine(output);
+for (int i = 0; i < external.GetLength(0); i++) 
+{
+    Console.WriteLine($"Employee Email: {external}"+$"{externalDomain}");}
